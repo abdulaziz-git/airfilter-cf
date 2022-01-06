@@ -316,6 +316,16 @@
                                 return info_text;
                             }
 
+                            function preFilter(){
+                                let pre_filter = "";
+                                if(value.Prefilter !== undefined) {
+                                    pre_filter = '<ul class="list-group list-group-horizontal-md">\
+                                                <li class="list-group-item flex-fill">Prefilter: '+value.Prefilter+'</li>\
+                                            </ul>';
+                                }
+                                return pre_filter;
+                            }
+
                             $('#results').append('\
                                 <div class="row p-2 bg-white border rounded mt-2">\
                                     <div class="col-md-3 mt-1">\
@@ -340,15 +350,13 @@
                                             </ul>\
                                             <ul class="list-group list-group-horizontal-md">\
                                                 <li class="list-group-item flex-fill">CADR (m3/hr): '+data[key]["CADR (m3/hr)"]+'</li>\
-                                                <li class="list-group-item flex-fill">CADR (Cubic feet/min): '+data[key]["CADR (Cubic feet/min)"]+'</li>\
+                                                <li class="list-group-item flex-fill">CADR (Cubic feet/min): '+Math.round(data[key]["CADR (Cubic feet/min)"])+'</li>\
                                             </ul>\
                                             <ul class="list-group list-group-horizontal-md">\
-                                                <li class="list-group-item flex-fill">CADR (Litre/sec): '+data[key]["CADR (Litre/sec)"]+'</li>\
+                                                <li class="list-group-item flex-fill">CADR (Litre/sec): '+Math.round(data[key]["CADR (Litre/sec)"])+'</li>\
                                                 <li class="list-group-item flex-fill">Noise (dBA): '+data[key]["Noise (dBA)"]+'</li>\
                                             </ul>\
-                                            <ul class="list-group list-group-horizontal-md">\
-                                                <li class="list-group-item flex-fill">Prefilter: '+value.Prefilter+'</li>\
-                                            </ul>\
+                                            '+preFilter()+'\
                                         </div>\
                                     </div>\
                                     <div class="align-items-center align-content-center col-md-3 border-left mt-1">\
