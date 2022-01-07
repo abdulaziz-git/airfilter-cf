@@ -122,10 +122,12 @@
 					</div>
                     <select name="ach" class="form-select" id="ach" required>
                         <option value="ach" selected>6 Air Changes per Hour (ACH)</option>
-                        <option value="lps">20 L/person/second (Advanced only)</option>
+                        <option value="10_lps">10 L/person/second (Absolute minimum)</option>
+                        <option value="20_lps">20 L/person/second (Ideal, non-vigorous activity)</option>
+                        <option value="50_lps">50 L/person/second (Ideal, vigorous activity eg Exercise, Dancing)</option>
                     </select>
                     <div class="invalid-feedback">
-                        Select 6 Air Changes per Hour (ACH) or 20 L/person/second.
+                        Select 6 Air Changes per Hour (ACH) or L/person/second.
                     </div>
                 </div>
                 <div class="col-md-4" id="rms">
@@ -207,7 +209,7 @@
                     $('#rms-type').show();
                     $('#noc').hide();
                     $('#no-of-occ').prop('required', false);
-                } else if ($(this).val() == 'lps') {
+                } else {
                     $('#rms').hide();
                     $('#room-size').prop('required', false);
                     $('#rms-type').hide();
@@ -289,8 +291,8 @@
                             $('#search_filter').append('\
                                 <li class="list-inline-item">No. Occupants: '+$("#no-of-occ").val()+'</li>'
                             );
-                            var ach_need_text = "devices required for 20L/p/s";
-                            var ach_type_text = "L/p/s for";
+                            var ach_need_text = 'devices required for '+$("#ach").val().slice(0, 2)+'L/p/s';
+                            var ach_type_text = 'L/p/s for';
                         }
 
                         // Set result data
